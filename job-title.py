@@ -1,6 +1,8 @@
-# Name, Grade
-# Assignment
-# Description
+#!/usr/bin/python3
+
+# Kiddee Grade 8
+# Booleans & Conditionals - Job Titles
+# This program will accept a predefined employee's first name as a command line argument and print their employee title as: gender title, full name, and job title of the employee in the form
 
 ### START - DO NOT EDIT ###
 import sys
@@ -52,7 +54,7 @@ def employee_data(first_name):
 
 ### END - DO NOT EDIT ###
 
-### EDIT HERE ###
+### EDIT HERE ### 
 
 # check for proper command line arguments or print usage and exit
 if len(sys.argv) != 2:
@@ -64,3 +66,10 @@ first_name = sys.argv[1]
 
 # get the employee dictionary for this first_name
 data = employee_data(first_name)
+
+#get all of their data for each person
+
+ftname = data['first_name']
+lsname = data['last_name']
+
+print (ftname + ' ' + lsname)
