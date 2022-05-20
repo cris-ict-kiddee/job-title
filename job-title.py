@@ -62,7 +62,8 @@ if len(sys.argv) != 2:
     sys.exit(1)
 
 # get the first_name from the command line argument
-first_name = sys.argv[1]
+command = sys.argv[1]
+first_name = command.title()
 
 # get the employee dictionary for this first_name
 data = employee_data(first_name)
@@ -72,4 +73,27 @@ data = employee_data(first_name)
 ftname = data['first_name']
 lsname = data['last_name']
 
-print (ftname + ' ' + lsname)
+#get their gender
+
+def gender(gender_code):
+    if gender_code  == 'M' :
+        gc = "Mr."
+        return gc
+    else:
+        gc = "Ms."
+        return gc
+
+gen = gender(data['gender_code'])
+
+#get their seniority
+
+def seniority(age):
+    if age < '25' :
+        ag = "Jr."
+    else:
+        ag = "Sr."
+        return ag
+
+age = seniority(data['age'])
+
+print (gen + ftname + ' ' + lsname + ',' + ' ' + age)
