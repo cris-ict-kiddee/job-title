@@ -56,26 +56,8 @@ def employee_data(first_name):
 
 ### EDIT HERE ### 
 
-# check for proper command line arguments or print usage and exit
-if len(sys.argv) != 2:
-    print("usage: job-title.py <first_name>", file=sys.stderr)
-    sys.exit(1)
-
-# get the first_name from the command line argument
-command = sys.argv[1]
-first_name = command.title()
-
-# get the employee dictionary for this first_name
-data = employee_data(first_name)
-
-#get all of their data for each person
-
-ftname = data['first_name']
-lsname = data['last_name']
-
-#get their gender
-
 def gender(gender_code):
+    '''TODO: add a docstring comment to every function definition, describing what it does, what arguments are passed in, and what value is returned'''
     if gender_code  == 'M' :
         gc = "Mr."
         return gc
@@ -83,9 +65,6 @@ def gender(gender_code):
         gc = "Ms."
         return gc
 
-gen = gender(data['gender_code'])
-
-#get their seniority
 
 def seniority(age):
     if age < 25 :
@@ -98,26 +77,57 @@ def seniority(age):
         ag = " "
         return ag
 
-age = seniority(data['age'])
-
-# get their job title
 
 def job_title(first_name):
+    # TODO use a nested if statement and use one return statement at the end of function
     if first_name in engineers and first_name in managers:
         jb = "Engineering Manager"
         return jb
-    if ftname in engineers:
+    if first_name in engineers:
         jb = "Engineer"
         return jb
-    if ftname in managers:
+    if first_name in managers:
         jb = "Manager"
         return jb
-    if ftname not in engineers and managers:
+    if first_name not in engineers and managers:
         jb = "Employees"
         return jb
 
 
-job = job_title(data['first_name'])
+def employee_job_title(first_name):
+    """returns a string containing an employees' full job title given a string `first_name`"""
+    #get all of their data for each person
+    ftname = data['first_name']
+    lsname = data['last_name']
+
+    #get their gender
+    gen = gender(data['gender_code'])
+
+    #get their seniority
+    age = seniority(data['age'])
+
+    # get their job title
+    job = job_title(data['first_name'])
+
+    # TODO an f-string might be easier to read
+    return gen + ftname + ' ' + lsname + ',' + age + ' ' + job
 
 
-print (gen + ftname + ' ' + lsname + ',' + age + ' ' + job)
+# check for proper command line arguments or print usage and exit
+if len(sys.argv) != 2:
+    print("usage: job-title.py <first_name>", file=sys.stderr)
+    sys.exit(1)
+
+# get the first_name from the command line argument
+command = sys.argv[1]
+first_name = command.title()
+
+# get the employee dictionary for this first_name
+data = employee_data(first_name)
+
+# TODO print error message "no such employee: {first_name}" and exit if data == None
+
+# this is how we print one job title,
+# TODO how would we print all job titles?
+output = employee_job_title(data)
+print(output)
