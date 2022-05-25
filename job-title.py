@@ -88,12 +88,36 @@ gen = gender(data['gender_code'])
 #get their seniority
 
 def seniority(age):
-    if age < '25' :
-        ag = "Jr."
+    if age < 25 :
+        ag = " Jr."
+        return ag
+    elif age >= 35 :
+        ag = " Sr."
+        return ag
     else:
-        ag = "Sr."
+        ag = " "
         return ag
 
 age = seniority(data['age'])
 
-print (gen + ftname + ' ' + lsname + ',' + ' ' + age)
+# get their job title
+
+def job_title(first_name):
+    if first_name in engineers and first_name in managers:
+        jb = "Engineering Manager"
+        return jb
+    if ftname in engineers:
+        jb = "Engineer"
+        return jb
+    if ftname in managers:
+        jb = "Manager"
+        return jb
+    if ftname not in engineers and managers:
+        jb = "Employees"
+        return jb
+
+
+job = job_title(data['first_name'])
+
+
+print (gen + ftname + ' ' + lsname + ',' + age + ' ' + job)
