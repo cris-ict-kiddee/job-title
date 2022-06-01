@@ -56,6 +56,7 @@ def employee_data(first_name):
 
 ### EDIT HERE ### 
 
+#Print a gender title infront of their name
 def gender(gender_code):
     '''TODO: add a docstring comment to every function definition, describing what it does, what arguments are passed in, and what value is returned'''
     if gender_code  == 'M' :
@@ -66,6 +67,7 @@ def gender(gender_code):
         return gc
 
 
+#Print thier seniority infront of their job to justify their age
 def seniority(age):
     if age < 25 :
         ag = " Jr."
@@ -78,6 +80,7 @@ def seniority(age):
         return ag
 
 
+#Print thier job for each person
 def job_title(first_name):
     # TODO use a nested if statement and use one return statement at the end of function
     if first_name in engineers and first_name in managers:
@@ -110,13 +113,10 @@ def employee_job_title(first_name):
     job = job_title(data['first_name'])
 
     # TODO an f-string might be easier to read
-    return gen + ftname + ' ' + lsname + ',' + age + ' ' + job
+    return (f"{gen} {ftname} {lsname} {age} {job}")
 
 
-# check for proper command line arguments or print usage and exit
-if len(sys.argv) != 2:
-    print("usage: job-title.py <first_name>", file=sys.stderr)
-    sys.exit(1)
+
 
 # get the first_name from the command line argument
 command = sys.argv[1]
@@ -124,6 +124,15 @@ first_name = command.title()
 
 # get the employee dictionary for this first_name
 data = employee_data(first_name)
+
+# check for proper command line arguments or print usage and exit
+if len(sys.argv) == 2:
+    if data == None:
+        print(f"no such employee: {first_name}", file=sys.stderr)
+        sys.exit(1)
+elif len(sys.argv) != 2:
+    print("Error", file=sys.stderr)
+    sys.exit(1)
 
 # TODO print error message "no such employee: {first_name}" and exit if data == None
 
