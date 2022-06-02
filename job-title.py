@@ -67,36 +67,36 @@ def gender(gender_code):
     return gc
 
 
-#Print thier seniority infront of their job to justify their age
 def seniority(age):
+    '''Print thier seniority infront of their job to justify their age'''
     if age < 25 :
-        ag = " Jr."
+        ag = "Jr. "
     elif age >= 35 :
-        ag = " Sr."
+        ag = "Sr. "
     else:
-        ag = " "
+        ag = ""
 
     return ag
 
 
-#Print thier job for each person
 def job_title(first_name):
-    # TODO use a nested if statement and use one return statement at the end of function
-    if first_name in engineers and first_name in managers:
-        jb = "Engineering Manager"
+    """Return the job string given first name """
     if first_name in engineers:
-        jb = "Engineer"
-    if first_name in managers:
-        jb = "Manager"
-    if first_name not in engineers and managers:
-        jb = "Employees"
+        if first_name in managers:
+            jb = "Engineering Manager"
+        else:
+            jb = "Engineer"
+    else: #Not a engineer
+        if first_name in managers:
+            jb = "Manager"
+        else:
+            jb = "Employees"    
 
     return jb
 
 
 def employee_job_title(first_name):
     """returns a string containing an employees' full job title given a string `first_name`"""
-    #get all of their data for each person
     ftname = data['first_name']
     lsname = data['last_name']
 
@@ -110,7 +110,7 @@ def employee_job_title(first_name):
     job = job_title(data['first_name'])
 
     # TODO an f-string might be easier to read
-    return (f"{gen}{ftname} {lsname},{age}{job}")
+    return (f"{gen} {ftname} {lsname}, {age}{job}")
 
 
 # check for proper command line arguments or print usage and exit
