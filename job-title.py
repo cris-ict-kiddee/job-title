@@ -61,23 +61,22 @@ def gender(gender_code):
     '''TODO: add a docstring comment to every function definition, describing what it does, what arguments are passed in, and what value is returned'''
     if gender_code  == 'M' :
         gc = "Mr."
-        return gc
     else:
         gc = "Ms."
-        return gc
+
+    return gc
 
 
 #Print thier seniority infront of their job to justify their age
 def seniority(age):
     if age < 25 :
         ag = " Jr."
-        return ag
     elif age >= 35 :
         ag = " Sr."
-        return ag
     else:
         ag = " "
-        return ag
+
+    return ag
 
 
 #Print thier job for each person
@@ -85,16 +84,14 @@ def job_title(first_name):
     # TODO use a nested if statement and use one return statement at the end of function
     if first_name in engineers and first_name in managers:
         jb = "Engineering Manager"
-        return jb
     if first_name in engineers:
         jb = "Engineer"
-        return jb
     if first_name in managers:
         jb = "Manager"
-        return jb
     if first_name not in engineers and managers:
         jb = "Employees"
-        return jb
+
+    return jb
 
 
 def employee_job_title(first_name):
@@ -113,30 +110,31 @@ def employee_job_title(first_name):
     job = job_title(data['first_name'])
 
     # TODO an f-string might be easier to read
-    return (f"{gen} {ftname} {lsname} {age} {job}")
+    return (f"{gen}{ftname} {lsname},{age}{job}")
 
-
-
-
-# get the first_name from the command line argument
-command = sys.argv[1]
-first_name = command.title()
-
-# get the employee dictionary for this first_name
-data = employee_data(first_name)
 
 # check for proper command line arguments or print usage and exit
 if len(sys.argv) == 2:
+    # print 1 employee giving first name argument 
+    command = sys.argv[1]
+    first_name = command.title()
+    # get the employee dictionary for this first_name
+    data = employee_data(first_name)
     if data == None:
-        print(f"no such employee: {first_name}", file=sys.stderr)
+        print("no such employee: {first_name}", file=sys.stderr)
         sys.exit(1)
-elif len(sys.argv) != 2:
-    print("Error", file=sys.stderr)
+    output = employee_job_title(data)
+    print(output)
+elif len(sys.argv) == 1:
+    #print all employee
+    for data in employees:
+        output = employee_job_title(data)
+        print(output)
+else:
+    print("usage: job-title.py <first_name>", file=sys.stderr)
     sys.exit(1)
 
 # TODO print error message "no such employee: {first_name}" and exit if data == None
 
 # this is how we print one job title,
 # TODO how would we print all job titles?
-output = employee_job_title(data)
-print(output)
